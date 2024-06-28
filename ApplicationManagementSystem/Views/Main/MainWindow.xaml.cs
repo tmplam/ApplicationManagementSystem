@@ -14,7 +14,7 @@ namespace ApplicationManagementSystem.Views.Main
         private enum Page
         {
             Applicant,
-            Business,
+            DoanhNghiep,
             AdmissionForm,
             Potential
         }
@@ -54,9 +54,9 @@ namespace ApplicationManagementSystem.Views.Main
             {
                 pageNavigation.NavigationService.Navigate(new Applicant(pageNavigation));
             }
-            else if (selectedIndex == Page.Business)
+            else if (selectedIndex == Page.DoanhNghiep)
             {
-                pageNavigation.NavigationService.Navigate(new Business(pageNavigation));
+                pageNavigation.NavigationService.Navigate(new DoanhNghiep(pageNavigation));
             }
             else if (selectedIndex == Page.AdmissionForm)
             {

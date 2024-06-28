@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <Folder Include="Views\Converters\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Converters\" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
   </ItemGroup>
 
 </Project>

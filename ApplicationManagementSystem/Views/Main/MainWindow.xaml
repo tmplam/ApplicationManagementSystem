@@ -82,7 +82,7 @@
                     </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" Padding="10" />
+                            <TextBlock Text="{Binding}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Padding="10" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

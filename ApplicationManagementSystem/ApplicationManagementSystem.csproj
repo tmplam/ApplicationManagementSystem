@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Login\" />
-    <Folder Include="Views\Main\Pages\" />
+    <Folder Include="Views\Converters\" />
   </ItemGroup>
 
 </Project>

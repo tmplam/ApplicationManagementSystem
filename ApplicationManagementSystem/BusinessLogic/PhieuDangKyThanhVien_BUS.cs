@@ -16,7 +16,7 @@ namespace ApplicationManagementSystem.BusinessLogic
         public DateTime NgayTao { get; set; }
         public string TrangThai { get; set; }
 
-        public static bool IsValidEmail(string email)
+        public static bool KiemTraEmail(string email)
         {
             // Biểu thức chính quy để kiểm tra email hợp lệ
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -51,7 +51,7 @@ namespace ApplicationManagementSystem.BusinessLogic
                 return "Chưa nhập email.";
             }
 
-            if (!IsValidEmail(pdk.Email))
+            if (!KiemTraEmail(pdk.Email))
                 return "Email không hợp lệ";
 
             return null;

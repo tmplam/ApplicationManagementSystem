@@ -19,12 +19,6 @@ namespace ApplicationManagementSystem.BusinessLogic
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, pattern);
         }
-
-        public static bool KiemTraTonTai(string maSothue)
-        {
-            return true;
-        }
-
         
         #nullable enable
         public static string? KiemTraDauVao(UngVien_BUS pdk)

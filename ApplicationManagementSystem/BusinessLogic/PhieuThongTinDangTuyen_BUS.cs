@@ -25,5 +25,27 @@ namespace ApplicationManagementSystem.BusinessLogic
         {
             return PhieuThongTinDangTuyen_DAO.Them(pdk);
         }
+
+        public static string? KiemTraDauVao(PhieuThongTinDangTuyen_BUS pdk)
+        {
+            if (string.IsNullOrEmpty(pdk.TenViTri))
+            {
+                return "Chưa nhập tên vị trí.";
+            }
+            else if (pdk.SoLuong <= 0)
+            {
+                return "Số lượng tuyển dụng không hợp lệ.";
+            }
+            else if (string.IsNullOrEmpty(pdk.YeuCau))
+            {
+                return "Chưa nhập yêu cầu tuyển dụng.";
+            }
+            else if (string.IsNullOrEmpty(pdk.KhoangThoiGian))
+            {
+                return "Chưa chọn khoảng thời gian tuyển dụng.";
+            }
+
+            return null;
+        }
     }
 }

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApplicationManagementSystem.BusinessLogic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ApplicationManagementSystem.Views.Main.Pages
 {
@@ -25,8 +14,22 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         public AdmissionForm(Frame pageNavigation)
         {
             _pageNavigation = pageNavigation;
-
             InitializeComponent();
+            DataContext = PhieuThongTinDangTuyen_BUS.layDSPhieuTTDT();
+        }
+
+        private void ThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+            if (PhieuTTDTListView.SelectedItem != null)
+            {
+                PhieuThongTinDangTuyen_BUS selectedPTTDT = (PhieuThongTinDangTuyen_BUS)PhieuTTDTListView.SelectedItem;
+                Guid MaPhieuTTDT = selectedPTTDT.MaPhieu;
+                _pageNavigation.Navigate(new GUI_ThanhToan(_pageNavigation, MaPhieuTTDT));
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một phiếu để thanh toán.");
+            }
         }
     }
 }

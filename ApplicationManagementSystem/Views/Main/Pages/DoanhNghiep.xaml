@@ -8,7 +8,7 @@
       d:DesignHeight="550" d:DesignWidth="750"
       Title="Business">
 
-    <Canvas Background="LightGray">
+    <Canvas Background="LightGray" Margin="0,0,0,34">
         <TextBlock x:Name="textBlock" 
                    FontWeight="Black"
                    Foreground="RoyalBlue"

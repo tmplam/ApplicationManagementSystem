@@ -24,10 +24,10 @@ namespace ApplicationManagementSystem.DataAccess
 
         private DbUtils()
         {
-            _server = "NONAME";
+            _server = "DESKTOP-UFK5LKF";
             _databaseName = "QLTuyenDung";
-            _user = "sa";
-            _password = "200303";
+            _user = "duy";
+            _password = "";
 
             string connectionString = $"""
 				Server = {_server}; 

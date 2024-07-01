@@ -21,10 +21,16 @@ namespace ApplicationManagementSystem.BusinessLogic
         public Guid MaPhieuDKTV { get; set; }
         public string MaNhanVien { get; set; }
 
-        public static int DangKy(PhieuThongTinDangTuyen_BUS pdk)
+        public static PhieuThongTinDangTuyen_BUS DangKy(PhieuThongTinDangTuyen_BUS pdk)
         {
             return PhieuThongTinDangTuyen_DAO.Them(pdk);
         }
+
+        public static PhieuThongTinDangTuyen_BUS XemPhieu(Guid maPhieu)
+        {
+            return PhieuThongTinDangTuyen_DAO.Xem(maPhieu);
+        }
+
 
         public static string? KiemTraDauVao(PhieuThongTinDangTuyen_BUS pdk)
         {

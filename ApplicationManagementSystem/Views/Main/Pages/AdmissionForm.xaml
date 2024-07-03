@@ -8,7 +8,79 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdmissionForm">
 
-    <Canvas>
-        <TextBlock FontSize="30" Canvas.Left="118" Canvas.Top="205" HorizontalAlignment="Left" VerticalAlignment="Center">Phiếu đăng tuyển code vô đây nha mấy ní!</TextBlock>
+    <Canvas Background="LightGray" Margin="0,0,60,-31">
+        <TextBlock x:Name="textBlock" 
+                   FontWeight="Black"
+                   Foreground="RoyalBlue"
+                   FontSize="30"
+                   Canvas.Left="42" TextWrapping="Wrap" 
+                   Text="PHIẾU ĐĂNG TUYỂN" Canvas.Top="25"/>
+        <Grid Canvas.Left="42" Canvas.Top="85">
+            <TextBox x:Name="TimKiemTextBox" 
+                     Width="292" Height="37" 
+                     FontSize="18"
+                     Padding="6,4,0,0"
+                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="Tìm kiếm ..."
+                       IsHitTestVisible="False"
+                       Foreground="Gray"
+                       FontSize="18"
+                       VerticalAlignment="Center"
+                       Padding="6,0,0,0"
+                       HorizontalAlignment="Left">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TimKiemTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <ListView ItemsSource="{Binding}"
+                  Name="PhieuTTDTListView" 
+                  Height="278" Width="651" 
+                  Canvas.Left="42" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="145">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mã phiếu" DisplayMemberBinding="{Binding MaPhieu}" Width="80"/>
+                    <GridViewColumn Header="Tên vị trí" DisplayMemberBinding="{Binding TenViTri}"/>
+                    <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"/>
+                    <GridViewColumn Header="Yêu cầu" DisplayMemberBinding="{Binding YeuCau}"/>
+                    <!--<GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding KhoangThoiGian}"/>-->
+                    <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding TinhTrang}"/>
+                    <GridViewColumn Header="Tình trạng thanh toán" DisplayMemberBinding="{Binding TinhTrangTT}"/>
+                    <GridViewColumn Header="Kiểu thanh toán" DisplayMemberBinding="{Binding KieuTT}"/>
+                    <GridViewColumn Header="Mã phiếu đăng ký thành viên" DisplayMemberBinding="{Binding MaPhieuDKTV}"/>
+                    <GridViewColumn Header="Mã nhân viên" DisplayMemberBinding="{Binding MaNV}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <ContextMenu x:Key="ContextMenu">
+                    <MenuItem Header="Chỉnh sửa"/>
+                    <MenuItem Header="Xác thực"/>
+                    <MenuItem Header="Thanh toán" Click="ThanhToan_Click"/>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <Button x:Name="dangKyButton" 
+            Background="RoyalBlue"
+            Foreground="White"
+            FontSize="16"
+            Cursor="Hand"
+            Content="Đăng ký" 
+            Canvas.Left="577" Canvas.Top="85" 
+            Height="37" Width="116"
+            RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Left" VerticalAlignment="Center" Click="dangKyButton_Click" />
     </Canvas>
 </Page>

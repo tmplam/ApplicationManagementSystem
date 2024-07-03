@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 
 namespace ApplicationManagementSystem.BusinessLogic
 {
-    internal class PhieuThongTinDangTuyen_BUS 
+    internal class PhieuThongTinDangTuyen_BUS
     {
         public Guid MaPhieu { get; set; }
         public string TenViTri { get; set; }
+        public string MaSoThue { get; set; }
         public int SoLuong { get; set; }
         public string YeuCau { get; set; }
-        public string KhoangThoiGian { get; set; }
-        public string TinhTrang{ get; set; }
-        public string TinhTrangThanhToan { get; set; }
-        public string KieuThanhToan { get; set; }
+        public int KhoangThoiGian { get; set; }
+        public string TinhTrang { get; set; }
+        public string TinhTrangTT { get; set; }
+        public string KieuTT { get; set; }
         public Guid MaPhieuDKTV { get; set; }
+
+        public DateTime NgayBatDau { get; set; }    
         public string MaNhanVien { get; set; }
 
         public static PhieuThongTinDangTuyen_BUS DangKy(PhieuThongTinDangTuyen_BUS pdk)
         {
             return PhieuThongTinDangTuyen_DAO.Them(pdk);
         }
-
-        public static PhieuThongTinDangTuyen_BUS XemPhieu(Guid maPhieu)
-        {
-            return PhieuThongTinDangTuyen_DAO.Xem(maPhieu);
-        }
-
 
         public static string? KiemTraDauVao(PhieuThongTinDangTuyen_BUS pdk)
         {
@@ -46,12 +43,37 @@ namespace ApplicationManagementSystem.BusinessLogic
             {
                 return "Chưa nhập yêu cầu tuyển dụng.";
             }
-            else if (string.IsNullOrEmpty(pdk.KhoangThoiGian))
+            else if (pdk.KhoangThoiGian <= 0)
             {
                 return "Chưa chọn khoảng thời gian tuyển dụng.";
             }
 
             return null;
+        }
+
+        public static int capNhapTinhTrangTT(Guid MaPhieu)
+        {
+            return PhieuThongTinDangTuyen_DAO.capNhapTinhTrangTT(MaPhieu);
+        }
+
+        public static decimal tinhToanSoTienTT(Guid MaPhieu, string KieuTT)
+        {
+            return PhieuThongTinDangTuyen_DAO.tinhToanSoTienTT(MaPhieu, KieuTT);
+        }
+
+        public static PhieuThongTinDangTuyen_BUS docThongTin(Guid MaPhieu)
+        {
+            return PhieuThongTinDangTuyen_DAO.docThongTin(MaPhieu);
+        }
+
+        public static List<PhieuThongTinDangTuyen_BUS> layDSPhieuTTDT()
+        {
+            return PhieuThongTinDangTuyen_DAO.layDSPhieuTTDT(); ;
+        }
+
+        public static decimal tinhToanSoTienChuaTT(Guid MaPhieu, string KieuTT)
+        {
+            return PhieuThongTinDangTuyen_DAO.tinhToanSoTienChuaTT(MaPhieu, KieuTT);
         }
     }
 }

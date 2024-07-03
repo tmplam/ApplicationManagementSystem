@@ -10,7 +10,6 @@ namespace ApplicationManagementSystem.BusinessLogic
     public class PhieuQuangCao_BUS
     {
         public Guid MaPhieu { get; set; }
-        public DateTime NgayBatDau { get; set; }
         public Decimal TongTien { get; set; }
         public Guid HinhThuc { get; set; }
         public Guid MaPhieuTTDT { get; set; }

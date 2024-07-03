@@ -24,7 +24,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
     {
         readonly Frame _pageNavigation;
 
-        string khoangThoiGianDangTuyen = "";
+        int khoangThoiGianDangTuyen = 0;
 
         List<HinhThucDangTuyen_BUS> dsHinhThuc;
 
@@ -65,7 +65,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void KhoangThoiGianDangTuyenCBB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            khoangThoiGianDangTuyen = KhoangThoiGianDangTuyenCBB.SelectedItem.ToString();
+            khoangThoiGianDangTuyen = (KhoangThoiGianDangTuyenCBB.SelectedIndex + 1) * 5;
         }
 
         private void TroVeButton_Click(object sender, RoutedEventArgs e)
@@ -122,6 +122,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 KhoangThoiGian = khoangThoiGianDangTuyen,
                 MaNhanVien = maNhanVien,
                 MaPhieuDKTV = doanhNghiep.MaPhieu,
+                NgayBatDau = thoiGianBatDauDangTuyen
             };
 
 
@@ -137,8 +138,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 {
                     PhieuQuangCao_BUS phieuQuangCao = new PhieuQuangCao_BUS()
                     {
-                        NgayBatDau = thoiGianBatDauDangTuyen,
-                        TongTien = dsHinhThuc.FirstOrDefault(item => item.MaHinhThuc == hinhThuc).GiaTien * int.Parse(khoangThoiGianDangTuyen.Split(" ")[0]),
+                        TongTien = dsHinhThuc.FirstOrDefault(item => item.MaHinhThuc == hinhThuc).GiaTien * khoangThoiGianDangTuyen,
                         MaPhieuTTDT = phieuTTDT.MaPhieu,
                         HinhThuc = hinhThuc
                     };

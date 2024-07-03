@@ -62,8 +62,9 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             SoLuongTuyenDung.Content = phieuTTDangTuyen.SoLuong;
             YeuCauUngVien.Content = phieuTTDangTuyen.YeuCau;
             KhoangThoiGian.Content = phieuTTDangTuyen.KhoangThoiGian;
-            ThoiGianBatDau.Content = dsPhieuQuangCao[currentPage - 1].NgayBatDau.ToString("dd/MM/yyyy");
+            ThoiGianBatDau.Content = phieuTTDangTuyen.NgayBatDau.ToString("dd/MM/yyyy");
             TongTien.Content = dsPhieuQuangCao[currentPage - 1].TongTien;
+            NgayTao.Content = "Ngày tạo: " +  DateTime.Now;
 
             HinhThucDangTuyen_BUS hinhthuc = HinhThucDangTuyen_BUS.XemHinhThuc(dsPhieuQuangCao[currentPage - 1].HinhThuc);
             HinhThuc.Content = hinhthuc.TenHinhThuc;

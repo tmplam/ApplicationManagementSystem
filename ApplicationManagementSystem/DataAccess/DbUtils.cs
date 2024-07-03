@@ -24,16 +24,16 @@ namespace ApplicationManagementSystem.DataAccess
 
         private DbUtils()
         {
-            _server = "NONAME";
+            _server = "DESKTOP-HBU9FDA";
             _databaseName = "QLTuyenDung";
-            _user = "sa";
-            _password = "200303";
-
+            //_user = "sa";
+            //_password = "200303";
+            //User ID = {_user}; 
+            //Password={_password}; 
             string connectionString = $"""
 				Server = {_server}; 
-				User ID = {_user}; 
-				Password={_password}; 
 				Database = {_databaseName}; 
+				Integrated Security=True;
 				TrustServerCertificate=True;
 				Connect Timeout=5
 				""";

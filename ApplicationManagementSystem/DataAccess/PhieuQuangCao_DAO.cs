@@ -30,7 +30,6 @@ namespace ApplicationManagementSystem.DataAccess
                 {
                     PhieuQuangCao_BUS phieuQuangCao = new PhieuQuangCao_BUS();
                     phieuQuangCao.MaPhieu = reader.GetGuid(reader.GetOrdinal("maPhieu"));
-                    phieuQuangCao.NgayBatDau = reader.GetDateTime(reader.GetOrdinal("NgayBatDau"));
                     phieuQuangCao.TongTien = reader.GetDecimal(reader.GetOrdinal("TongTien"));
                     phieuQuangCao.MaPhieuTTDT = reader.GetGuid(reader.GetOrdinal("MaPhieuTTDT"));
                     phieuQuangCao.HinhThuc = reader.GetGuid(reader.GetOrdinal("MaHT"));
@@ -49,12 +48,11 @@ namespace ApplicationManagementSystem.DataAccess
             foreach (var phieu in dsPhieu)
             {
                 string query = """
-				INSERT INTO PhieuDangKyQuangCao(NgayBatDau, TongTien, MaPhieuTTDT, MaHT)
-				VALUES(@NgayBatDau, @TongTien, @MaPhieuTTDT, @MaHT);
+				INSERT INTO PhieuDangKyQuangCao(TongTien, MaPhieuTTDT, MaHT)
+				VALUES(@TongTien, @MaPhieuTTDT, @MaHT);
 				""";
                 var command = new SqlCommand(query,connection);
 
-                command.Parameters.Add("@NgayBatDau", SqlDbType.Date).Value = phieu.NgayBatDau.Date;
                 command.Parameters.Add("@TongTien", SqlDbType.Decimal).Value = phieu.TongTien;
                 command.Parameters.Add("@MaPhieuTTDT", SqlDbType.UniqueIdentifier).Value = phieu.MaPhieuTTDT;
                 command.Parameters.Add("@MaHT", SqlDbType.UniqueIdentifier).Value = phieu.HinhThuc;

@@ -51,7 +51,7 @@
                     <GridViewColumn Header="Tên vị trí" DisplayMemberBinding="{Binding TenViTri}"/>
                     <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"/>
                     <GridViewColumn Header="Yêu cầu" DisplayMemberBinding="{Binding YeuCau}"/>
-                    <!--<GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding KhoangThoiGian}"/>-->
+                    <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding KhoangThoiGian}"/>
                     <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding TinhTrang}"/>
                     <GridViewColumn Header="Tình trạng thanh toán" DisplayMemberBinding="{Binding TinhTrangTT}"/>
                     <GridViewColumn Header="Kiểu thanh toán" DisplayMemberBinding="{Binding KieuTT}"/>

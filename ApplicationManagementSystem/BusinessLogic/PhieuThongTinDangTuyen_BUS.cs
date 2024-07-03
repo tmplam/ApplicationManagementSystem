@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationManagementSystem.BusinessLogic
 {
-    internal class PhieuThongTinDangTuyen_BUS
+    public class PhieuThongTinDangTuyen_BUS
     {
         public Guid MaPhieu { get; set; }
         public string TenViTri { get; set; }
@@ -54,6 +54,11 @@ namespace ApplicationManagementSystem.BusinessLogic
         public static int capNhapTinhTrangTT(Guid MaPhieu)
         {
             return PhieuThongTinDangTuyen_DAO.capNhapTinhTrangTT(MaPhieu);
+        }
+
+        public static int capNhapKieuTT(Guid MaPhieu, string KTT)
+        {
+            return PhieuThongTinDangTuyen_DAO.capNhapKieuTT(MaPhieu, KTT);
         }
 
         public static decimal tinhToanSoTienTT(Guid MaPhieu, string KieuTT)

@@ -24,7 +24,7 @@ namespace ApplicationManagementSystem.DataAccess
 
         private DbUtils()
         {
-            _server = "DESKTOP-HBU9FDA";
+            _server = "DESKTOP-UFK5LKF";
             _databaseName = "QLTuyenDung";
             //_user = "sa";
             //_password = "200303";

@@ -65,7 +65,7 @@
         <TextBox x:Name="txtSTCTT"
                      Height="22" Canvas.Left="204" Canvas.Top="171" Width="155" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
         <Button x:Name="btnLapHD"
-                    Content="Lập hóa đơn"
+                    Content="Xác nhận"
                     FontSize="18"
                     Cursor="Hand"
                     Background="RoyalBlue"

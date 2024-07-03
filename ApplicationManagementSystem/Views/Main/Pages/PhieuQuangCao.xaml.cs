@@ -32,7 +32,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         {
             _pageNavigation = pageNavigation;
             doanhNghiep = _doanhNghiep;
-            phieuTTDangTuyen = PhieuThongTinDangTuyen_BUS.XemPhieu(maPhieuTTDT);
+            phieuTTDangTuyen = PhieuThongTinDangTuyen_BUS.docThongTin(maPhieuTTDT);
             dsPhieuQuangCao = PhieuQuangCao_BUS.LayDS(maPhieuTTDT);
 
             InitializeComponent();

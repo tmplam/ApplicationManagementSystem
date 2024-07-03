@@ -15,7 +15,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         {
             _pageNavigation = pageNavigation;
             InitializeComponent();
-           // DataContext = PhieuThongTinDangTuyen_BUS.layDSPhieuTTDT();
+            DataContext = PhieuThongTinDangTuyen_BUS.layDSPhieuTTDT();
         }
 
         private void ThanhToan_Click(object sender, RoutedEventArgs e)

@@ -37,20 +37,20 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 cbbKTT.IsEnabled = false;
                 txtSTCTT.Text = PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(MaPhieuTTDT, cbbKTT.Text).ToString("N2");
             }
-            //else
-            //{
-            //    if (phieuTT.KhoangThoiGian < 30)
-            //    {
-            //        cbbKTT.Text = "Toàn bộ";
-            //        cbbKTT.IsEnabled = false;
-            //        txtSTCTT.Text = PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(MaPhieuTTDT, cbbKTT.Text).ToString("N2");
-            //    }
-            //    else
-            //    {
-            //        cbbKTT.IsEnabled = true;
-            //        txtSTCTT.Text = PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(MaPhieuTTDT, "Chưa chọn").ToString("N2");
-            //    }
-            //}
+            else
+            {
+                if (phieuTT.KhoangThoiGian < 30)
+                {
+                    cbbKTT.Text = "Toàn bộ";
+                    cbbKTT.IsEnabled = false;
+                    txtSTCTT.Text = PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(MaPhieuTTDT, cbbKTT.Text).ToString("N2");
+                }
+                else
+                {
+                    cbbKTT.IsEnabled = true;
+                    txtSTCTT.Text = PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(MaPhieuTTDT, "Chưa chọn").ToString("N2");
+                }
+            }
         }
 
         private void cbbKTT_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,10 +84,22 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 return;
             }
 
+            if (cbbKTT.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn kiểu thanh toán!");
+                return;
+            }
+
             if (cbbHTTT.SelectedIndex == -1)
             {
                 MessageBox.Show("Vui lòng chọn hình thức thanh toán!");
                 return; 
+            }
+
+            if (PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(phieuTT.MaPhieu, cbbKTT.Text) == 0)
+            {
+                MessageBox.Show("Phiếu thông tin đăng tuyển này chưa lập phiếu quảng cáo");
+                return;
             }
 
             _pageNavigation.Navigate(new GUI_LapHoaDon(_pageNavigation, phieuTT, PhieuThongTinDangTuyen_BUS.tinhToanSoTienTT(phieuTT.MaPhieu, cbbKTT.Text), cbbHTTT.Text, cbbKTT.Text));

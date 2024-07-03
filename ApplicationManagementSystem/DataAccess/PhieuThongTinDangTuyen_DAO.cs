@@ -103,6 +103,19 @@ namespace ApplicationManagementSystem.DataAccess
             return rowsUpdated;
         }
 
+        public static int capNhapKieuTT(Guid MaPhieu, string KTT)
+        {
+            string query = """
+				UPDATE PhieuTTDangTuyen SET KieuTT = @KieuThanhToan WHERE MaPhieu = @MaPhieuTTDT;
+				""";
+            var command = new SqlCommand(query, DbUtils.getInstance().Connection);
+
+            // Thêm các tham số và thiết lập giá trị cho stored procedure
+            command.Parameters.Add("@MaPhieuTTDT", SqlDbType.UniqueIdentifier).Value = MaPhieu;
+            command.Parameters.Add("@KieuThanhToan", SqlDbType.NVarChar).Value = KTT;
+            return command.ExecuteNonQuery();
+        }
+
         public static decimal tinhToanSoTienTT(Guid MaPhieu, string KieuTT)
         {
             decimal soTienCanThanhToanTiepTheo = 0;

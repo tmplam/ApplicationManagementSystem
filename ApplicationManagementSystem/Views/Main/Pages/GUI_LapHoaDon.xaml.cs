@@ -28,6 +28,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         decimal soTienDangTT;
         string hinhThucTT;
         string NoiDungDinhDangEmail;
+        string Kieu2T;
         public GUI_LapHoaDon(Frame pageNavigation, PhieuThongTinDangTuyen_BUS phieu, decimal soTienTT, string HTTT, string KTT)
         {
             _pageNavigation = pageNavigation;
@@ -36,6 +37,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             phieuTT = phieu;
             soTienDangTT = soTienTT;
             hinhThucTT = HTTT;
+            Kieu2T= KTT;
             PhieuDangKyThanhVien_BUS pdktv = PhieuDangKyThanhVien_BUS.docThongTin(phieu.MaPhieuDKTV);
             List<HinhThucDangTuyen_BUS> dsHTDT = HinhThucDangTuyen_BUS.layDSHinhThuc(phieu.MaPhieu);
             // Load vô textbox
@@ -95,6 +97,12 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void btnXacNhan_Click(object sender, RoutedEventArgs e)
         {
+            //Cập nhập kiểu thanh toán
+            var numOfRow1 = PhieuThongTinDangTuyen_BUS.capNhapKieuTT(phieuTT.MaPhieu, Kieu2T);
+            //if (numOfRow1 > 0)
+            //{
+            //    MessageBox.Show("Cập nhập kiểu thanh toán thành công");
+            //}
             //Thêm hoá đơn
             HoaDon_BUS hoaDon = new()
             {
@@ -104,7 +112,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 MaPhieuTTDT = phieuTT.MaPhieu,
                 MaNhanVien = "4561023897412"
             };
-            var numOfRow1 = HoaDon_BUS.themHoaDon(hoaDon);
+            var numOfRow = HoaDon_BUS.themHoaDon(hoaDon);
             MessageBox.Show("Thêm hoá đơn thành công");
             //gửi hoá đơn
             TextRange textRange = new TextRange(txtNoiDung.Document.ContentStart, txtNoiDung.Document.ContentEnd);

@@ -64,7 +64,7 @@ namespace ApplicationManagementSystem.Views.Main
             }
             else if (selectedIndex == Page.Potential)
             {
-                pageNavigation.NavigationService.Navigate(new Potential(pageNavigation));
+                pageNavigation.NavigationService.Navigate(new TiemNang(pageNavigation));
             }
         }
 

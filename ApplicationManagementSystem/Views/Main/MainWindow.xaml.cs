@@ -1,4 +1,5 @@
-﻿using ApplicationManagementSystem.Views.Login;
+﻿using ApplicationManagementSystem.DataAccess;
+using ApplicationManagementSystem.Views.Login;
 using ApplicationManagementSystem.Views.Main.Pages;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -73,6 +74,7 @@ namespace ApplicationManagementSystem.Views.Main
             MessageBoxResult result = MessageBox.Show("Bạn chắc chắn muốn đăng xuất?", "Cảnh báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
             {
+                DbUtils.closeConnection();
                 new LoginWindow().Show();
                 Close();
             }

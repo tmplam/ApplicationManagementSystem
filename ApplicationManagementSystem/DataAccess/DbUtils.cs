@@ -24,9 +24,18 @@ namespace ApplicationManagementSystem.DataAccess
             return _instance;
         }
 
+        public static void closeConnection()
+        {
+            if (_instance != null)
+            {
+                _instance.Connection.Close();
+            }
+            _instance = null;
+        }
+
         private DbUtils(string username, string password)
         {
-            _server = "";
+            _server = "MSI";
             _databaseName = "QLTuyenDung";
             _user = username;
             _password = password;
@@ -50,7 +59,7 @@ namespace ApplicationManagementSystem.DataAccess
             catch (Exception ex)
             {
                 _isConnected = false;
-                MessageBox.Show($"Failed to connect to database! Reason: {ex.Message}",
+                MessageBox.Show("Failed to connect to database!",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
@@ -58,8 +67,10 @@ namespace ApplicationManagementSystem.DataAccess
             {
                 _instance = this;
             }
-
-            _instance = null;
+            else
+            {
+                closeConnection();
+            }          
         }
         public SqlConnection? Connection
         {

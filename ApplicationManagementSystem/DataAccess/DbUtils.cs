@@ -7,36 +7,39 @@ namespace ApplicationManagementSystem.DataAccess
     {
         private string _server;
         private string _databaseName;
-        private string _user;
-        private string _password;
+        public static string _user;
+        public static string _password;
+        public static bool _isConnected;
 
         private static DbUtils? _instance = null;
         SqlConnection? _connection;
 
+        
         public static DbUtils getInstance()
         {
             if (_instance == null)
             {
-                _instance = new DbUtils();
+                _isConnected = true;
+                _instance = new DbUtils(_user, _password);
             }
             return _instance;
         }
 
-        private DbUtils()
+        private DbUtils(string username, string password)
         {
-            _server = "DESKTOP-UFK5LKF";
+            _server = "THEDUYET";
             _databaseName = "QLTuyenDung";
-            //_user = "sa";
-            //_password = "200303";
-            //User ID = {_user}; 
-            //Password={_password}; 
+            _user = username;
+            _password = password;
+
             string connectionString = $"""
-				Server = {_server}; 
-				Database = {_databaseName}; 
-				Integrated Security=True;
-				TrustServerCertificate=True;
-				Connect Timeout=5
-				""";
+            Server = {_server}; 
+            User ID = {_user}; 
+            Password={_password}; 
+            Database = {_databaseName}; 
+            TrustServerCertificate=True;
+            Connect Timeout=5
+            """;
 
             _connection = new SqlConnection(connectionString);
 
@@ -46,12 +49,46 @@ namespace ApplicationManagementSystem.DataAccess
             }
             catch (Exception ex)
             {
+
+                _isConnected = false;
                 MessageBox.Show($"Failed to connect to database! Reason: {ex.Message}",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             _instance = this;
         }
+
+
+    //    private DbUtils()
+    //    {
+    //        _server = "THEDUYET";
+    //        _databaseName = "QLTuyenDung";
+    //        _user = "sa";
+    //        _password = "Geborgenheit18";
+
+    //        string connectionString = $"""
+				//Server = {_server}; 
+				//User ID = {_user}; 
+				//Password={_password}; 
+				//Database = {_databaseName}; 
+				//TrustServerCertificate=True;
+				//Connect Timeout=5
+				//""";
+
+    //        _connection = new SqlConnection(connectionString);
+
+    //        try
+    //        {
+    //            _connection.Open();
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            MessageBox.Show($"Failed to connect to database! Reason: {ex.Message}",
+    //                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    //        }
+
+    //        _instance = this;
+    //    }
 
         public SqlConnection? Connection
         {

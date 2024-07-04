@@ -26,7 +26,7 @@
             Foreground="Blue"
             FontSize="24"
             FontWeight="Black"
-            Canvas.Top="48" HorizontalAlignment="Left" VerticalAlignment="Center" Width="757" TextAlignment="Center"/>
+            Canvas.Top="48" HorizontalAlignment="Left" VerticalAlignment="Center" Width="757" TextAlignment="Center" Canvas.Left="-10"/>
 
         <Grid Canvas.Left="42" Canvas.Top="85">
             <TextBox x:Name="TimKiemTextBox" 

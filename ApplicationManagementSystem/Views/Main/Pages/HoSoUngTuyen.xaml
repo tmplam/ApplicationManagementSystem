@@ -1,0 +1,122 @@
+﻿<Page x:Class="ApplicationManagementSystem.Views.Main.Pages.HoSoUngTuyen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ApplicationManagementSystem.Views.Main.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="750"
+      Title="HoSoUngTuyen">
+    <Canvas Background="LightGray">
+        <Button x:Name="TroVeButton" 
+            Content="&lt;&lt; Trở về" 
+            FontSize="16"
+            Cursor="Hand"
+            Background="RoyalBlue"
+            Foreground="White"
+            Canvas.Left="32" Canvas.Top="10"
+            Width="94" Height="32"
+            Click="TroVeButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBlock x:Name="textBlock" 
+               FontWeight="Black"
+               Foreground="RoyalBlue"
+               FontSize="30"
+               Canvas.Left="28" TextWrapping="Wrap" 
+               Text="PHIẾU TT ĐĂNG TUYỂN &gt; HỒ SƠ ỨNG TUYỂN" Canvas.Top="53" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Grid Canvas.Left="42" Canvas.Top="103" HorizontalAlignment="Center" Height="29" VerticalAlignment="Top">
+            <TextBox x:Name="TimKiemTextBox" 
+                 Width="151" Height="30" 
+                 FontSize="16"
+                 Padding="6,4,0,0"
+                 VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="Tìm kiếm ..."
+                   IsHitTestVisible="False"
+                   Foreground="Gray"
+                   FontSize="16"
+                   VerticalAlignment="Center"
+                   Padding="6,0,0,0"
+                   HorizontalAlignment="Left" Margin="8,0,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TimKiemTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <ListView ItemsSource="{Binding}"
+              Name="HoSoListView" 
+              Height="310" Width="390" 
+              Canvas.Left="42" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mã hồ sơ" DisplayMemberBinding="{Binding MaHoSo}" Width="80"/>
+                    <GridViewColumn Header="Mã ứng viên" DisplayMemberBinding="{Binding MaUV}"/>
+                    <GridViewColumn Header="Họ tên" DisplayMemberBinding="{Binding HoTen}"/>
+                    <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding NgayLap}"/>
+                    <GridViewColumn Header="Tình trạng hồ sơ" DisplayMemberBinding="{Binding TinhTrang}"/>
+                    <GridViewColumn Header="Độ ưu tiên" DisplayMemberBinding="{Binding DoUuTien}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <ContextMenu x:Key="ContextMenu">
+                    <MenuItem Header="Chỉnh sửa">
+                    </MenuItem>
+                    <MenuItem Header="Xác thực">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <ComboBox x:Name="cbbTrangThaiHS" Height="30" Canvas.Left="250" Canvas.Top="103" Width="182" FontSize="16" SelectionChanged="TrangThaiHS_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="Tất cả"  IsSelected="True" />
+            <ComboBoxItem Content="Đủ điều kiện" />
+            <ComboBoxItem Content="Không đủ điều kiện" />
+            <ComboBoxItem Content="Đạt" />
+        </ComboBox>
+        <ListView ItemsSource="{Binding}"
+            Name="ChiTietHoSoListView" 
+            Height="265" Width="227" 
+            Canvas.Left="463" Canvas.Top="193" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"/>
+                    <GridViewColumn Header="Tên chi tiết" DisplayMemberBinding="{Binding TenChiTiet}"/>
+                    <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding MoTa}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <ContextMenu x:Key="ContextMenu">
+                    <MenuItem Header="Chỉnh sửa">
+                    </MenuItem>
+                    <MenuItem Header="Xác thực">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <TextBlock x:Name="textBlock_Copy" 
+            FontWeight="Black"
+            Foreground="RoyalBlue"
+            FontSize="26"
+            Canvas.Left="477" TextWrapping="Wrap" 
+            Text="CHI TIẾT HỒ SƠ" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.532,1.775"/>
+    </Canvas>
+</Page>

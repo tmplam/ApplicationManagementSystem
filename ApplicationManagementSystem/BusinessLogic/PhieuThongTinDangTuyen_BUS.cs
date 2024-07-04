@@ -80,5 +80,20 @@ namespace ApplicationManagementSystem.BusinessLogic
         {
             return PhieuThongTinDangTuyen_DAO.tinhToanSoTienChuaTT(MaPhieu, KieuTT);
         }
+
+        public static List<PhieuThongTinDangTuyen_BUS> LayDSPhieuDangTuyen(string trangthai)
+        {
+            return PhieuThongTinDangTuyen_DAO.XemDSPhieuDangTuyen(trangthai); ;
+        }
+
+        public static List<PhieuThongTinDangTuyen_BUS> TimPhieu(string keyword)
+        {
+            return PhieuThongTinDangTuyen_DAO.Tim(keyword);
+        }
+
+        public static int CapNhatTrangThai(Guid ma, string trangthai)
+        {
+            return PhieuThongTinDangTuyen_DAO.CapNhatTTPhieuDT(ma, trangthai);
+        }
     }
 }

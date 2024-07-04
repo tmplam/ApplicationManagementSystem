@@ -20,7 +20,7 @@
                      Width="292" Height="37" 
                      FontSize="18"
                      Padding="6,4,0,0"
-                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+                     VerticalAlignment="Center" HorizontalAlignment="Center" TextChanged="Input_ViTri" />
             <TextBlock Text="Tìm kiếm ..."
                        IsHitTestVisible="False"
                        Foreground="Gray"
@@ -69,6 +69,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" >
                     <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
                 </Style>
             </ListView.ItemContainerStyle>
 
@@ -82,5 +83,14 @@
             Canvas.Left="577" Canvas.Top="85" 
             Height="37" Width="116"
             RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Left" VerticalAlignment="Center" Click="dangKyButton_Click" />
+        <ComboBox x:Name="cbbTrangThai" Height="30" Canvas.Left="392" Canvas.Top="88" Width="128" FontSize="16" SelectionChanged="TrangThai_Selected" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ComboBoxItem Content="Tất cả" IsSelected="True" />
+            <ComboBoxItem Content="Chờ xác thực" />
+            <ComboBoxItem Content="Chưa duyệt" />
+            <ComboBoxItem Content="Đang duyệt" />
+            <ComboBoxItem Content="Đã duyệt" />
+            <ComboBoxItem Content="Đã gửi" />
+            <ComboBoxItem Content="Hoàn thành" />
+        </ComboBox>
     </Canvas>
 </Page>

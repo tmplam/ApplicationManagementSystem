@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApplicationManagementSystem.DataAccess;
+using ApplicationManagementSystem.Views.Main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,20 @@ namespace ApplicationManagementSystem.Views.Login
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void DangNhapButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = TaiKhoanTextBox.Text;
+            string password = MatKhauTextBox.Text;
+            DbUtils._user = username;
+            DbUtils._password = password;
+            var connection = DbUtils.getInstance().Connection;
+            if (DbUtils._isConnected)
+            {
+                var window = new MainWindow();
+                window.Show();
+            }
         }
     }
 }

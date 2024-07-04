@@ -218,5 +218,80 @@ namespace ApplicationManagementSystem.DataAccess
             return list;
         }
 
+        public static List<PhieuThongTinDangTuyen_BUS> XemDSPhieuDangTuyen(string trangthai)
+        {
+            List<PhieuThongTinDangTuyen_BUS> list = new List<PhieuThongTinDangTuyen_BUS>();
+            string sql;
+            if (trangthai == "Tất cả")
+            {
+                sql = "SELECT * FROM PhieuTTDangTuyen";
+            }
+            else
+            {
+                sql = $"SELECT * FROM PhieuTTDangTuyen WHERE TinhTrang = N'{trangthai}'";
+            }
+
+            var command = new SqlCommand(sql, DbUtils.getInstance().Connection);
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                PhieuThongTinDangTuyen_BUS phieu = new PhieuThongTinDangTuyen_BUS();
+
+                phieu.MaPhieu = reader.GetGuid(reader.GetOrdinal("MaPhieu"));
+                phieu.TenViTri = reader.GetString(reader.GetOrdinal("TenViTri"));
+                phieu.SoLuong = reader.GetInt32(reader.GetOrdinal("SoLuong"));
+                phieu.YeuCau = reader.GetString(reader.GetOrdinal("YeuCau"));
+                phieu.KhoangThoiGian = reader.GetInt32(reader.GetOrdinal("KhoangThoiGian"));
+                phieu.TinhTrang = reader.GetString(reader.GetOrdinal("TinhTrang"));
+                phieu.TinhTrangTT = reader.GetString(reader.GetOrdinal("TinhTrangTT"));
+                phieu.KieuTT = reader.GetString(reader.GetOrdinal("KieuTT"));
+                phieu.MaPhieuDKTV = reader.GetGuid(reader.GetOrdinal("MaPhieuDKTV"));
+                phieu.MaNhanVien = reader.GetString(reader.GetOrdinal("MaNhanVien"));
+                phieu.NgayBatDau = reader.GetDateTime(reader.GetOrdinal("NgayBatDau"));
+                list.Add(phieu);
+            }
+            reader.Close();
+            return list;
+        }
+
+        public static int CapNhatTTPhieuDT(Guid ma, string trangthai) //SỬA
+        {
+            string query = "UPDATE PhieuTTDangTuyen SET TinhTrang = @TrangThai WHERE MaPhieu = @MaPhieu;";
+            var command = new SqlCommand(query, DbUtils.getInstance().Connection);
+            command.Parameters.AddWithValue("@TrangThai", trangthai);
+            command.Parameters.AddWithValue("@MaPhieu", ma);
+            return command.ExecuteNonQuery();
+        }
+
+        public static List<PhieuThongTinDangTuyen_BUS> Tim(string keyword)
+        {
+            List<PhieuThongTinDangTuyen_BUS> list = new List<PhieuThongTinDangTuyen_BUS>();
+            string query = $"SELECT * FROM PhieuTTDangTuyen WHERE TenViTri like N'%{keyword}%'";
+            var command = new SqlCommand(query, DbUtils.getInstance().Connection);
+            command.Parameters.AddWithValue("@ViTri", keyword);
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                PhieuThongTinDangTuyen_BUS phieu = new PhieuThongTinDangTuyen_BUS();
+
+                phieu.MaPhieu = reader.GetGuid(reader.GetOrdinal("MaPhieu"));
+                phieu.TenViTri = reader.GetString(reader.GetOrdinal("TenViTri"));
+                phieu.SoLuong = reader.GetInt32(reader.GetOrdinal("SoLuong"));
+                phieu.YeuCau = reader.GetString(reader.GetOrdinal("YeuCau"));
+                phieu.KhoangThoiGian = reader.GetInt32(reader.GetOrdinal("KhoangThoiGian"));
+                phieu.TinhTrang = reader.GetString(reader.GetOrdinal("TinhTrang"));
+                phieu.TinhTrangTT = reader.GetString(reader.GetOrdinal("TinhTrangTT"));
+                phieu.KieuTT = reader.GetString(reader.GetOrdinal("KieuTT"));
+                phieu.MaPhieuDKTV = reader.GetGuid(reader.GetOrdinal("MaPhieuDKTV"));
+                phieu.MaNhanVien = reader.GetString(reader.GetOrdinal("MaNhanVien"));
+                phieu.NgayBatDau = reader.GetDateTime(reader.GetOrdinal("NgayBatDau"));
+                list.Add(phieu);
+            }
+            reader.Close();
+
+            return list;
+        }
     }
 }

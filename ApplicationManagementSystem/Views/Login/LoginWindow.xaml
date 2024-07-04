@@ -7,32 +7,32 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="500" Width="300" WindowStartupLocation="CenterScreen">
     <Canvas>
-        <TextBlock TextWrapping="Wrap" Foreground="Red" FontSize="30" Canvas.Left="15" Canvas.Top="340" HorizontalAlignment="Center" VerticalAlignment="Top">Bạn đã "Đăng Xuất"!</TextBlock>
         <Label Content="Tài khoản"
             FontWeight="SemiBold"
             FontSize="18"
-            Target="{Binding ElementName=TaiKhoanTextBox}" Canvas.Left="24" Canvas.Top="109" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.616,0.597"  />
+            Target="{Binding ElementName=TaiKhoanTextBox}" Canvas.Left="16" Canvas.Top="140" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.616,0.597"  />
         <TextBox x:Name="TaiKhoanTextBox"
             TextWrapping="Wrap"  
             FontSize="18"
-            Width="244" Canvas.Left="28" Canvas.Top="138" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            Width="244" Canvas.Left="20" Canvas.Top="169" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="Mật khẩu"
             FontWeight="SemiBold"
             FontSize="18"
-            Target="{Binding ElementName=MatKhauTextBox}" Canvas.Left="22" Canvas.Top="191" HorizontalAlignment="Left" VerticalAlignment="Center"  />
-        <TextBox x:Name="MatKhauTextBox"
-            TextWrapping="Wrap"  
+            Target="{Binding ElementName=MatKhauTextBox}" Canvas.Left="14" Canvas.Top="222" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+        <PasswordBox
+            x:Name="MatKhauTextBox" 
             FontSize="18"
-            Width="244" Canvas.Left="28" Canvas.Top="218" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            Width="244" Canvas.Left="20" Canvas.Top="249" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="DangNhapButton" 
             Content="Đăng Nhập" 
             FontSize="18"
             Cursor="Hand"
             Background="RoyalBlue"
             Foreground="White"
-            Canvas.Left="93" Canvas.Top="279"
+            Canvas.Left="85" Canvas.Top="310"
             Width="114" Height="40"
             Click="DangNhapButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Foreground="RoyalBlue" Canvas.Left="28" Canvas.Top="31" Height="75" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center" Text="QUẢN LÝ TUYỂN DỤNG"/>
 
     </Canvas>
 </Window>

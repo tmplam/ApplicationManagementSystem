@@ -29,14 +29,15 @@ namespace ApplicationManagementSystem.Views.Login
         private void DangNhapButton_Click(object sender, RoutedEventArgs e)
         {
             string username = TaiKhoanTextBox.Text;
-            string password = MatKhauTextBox.Text;
+            string password = MatKhauTextBox.Password;
             DbUtils._user = username;
             DbUtils._password = password;
-            var connection = DbUtils.getInstance().Connection;
-            if (DbUtils._isConnected)
+            var db = DbUtils.getInstance();
+            if (db != null && DbUtils._isConnected)
             {
                 var window = new MainWindow();
                 window.Show();
+                Close();
             }
         }
     }

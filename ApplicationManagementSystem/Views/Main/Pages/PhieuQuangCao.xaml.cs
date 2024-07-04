@@ -27,6 +27,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         PhieuDangKyThanhVien_BUS doanhNghiep;
         List<PhieuQuangCao_BUS> dsPhieuQuangCao;
         int currentPage = 1;
+        DateTime currentTime = DateTime.Now;    
 
         public PhieuQuangCao(Frame pageNavigation, PhieuDangKyThanhVien_BUS _doanhNghiep, Guid maPhieuTTDT)
         {
@@ -60,11 +61,11 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             DoanhNghiep.Content = doanhNghiep.TenCongTy;
             ViTriUngTuyen.Content = phieuTTDangTuyen.TenViTri;
             SoLuongTuyenDung.Content = phieuTTDangTuyen.SoLuong;
-            YeuCauUngVien.Content = phieuTTDangTuyen.YeuCau;
+            YeuCauUngVien.Text = phieuTTDangTuyen.YeuCau;
             KhoangThoiGian.Content = phieuTTDangTuyen.KhoangThoiGian;
             ThoiGianBatDau.Content = phieuTTDangTuyen.NgayBatDau.ToString("dd/MM/yyyy");
             TongTien.Content = dsPhieuQuangCao[currentPage - 1].TongTien;
-            NgayTao.Content = "Ngày tạo: " +  DateTime.Now;
+            NgayTao.Content = "Ngày tạo: " + currentTime;
 
             HinhThucDangTuyen_BUS hinhthuc = HinhThucDangTuyen_BUS.XemHinhThuc(dsPhieuQuangCao[currentPage - 1].HinhThuc);
             HinhThuc.Content = hinhthuc.TenHinhThuc;

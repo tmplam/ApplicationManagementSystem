@@ -91,11 +91,11 @@
                 FontWeight="SemiBold"
                 FontSize="18"
                 Canvas.Left="104" Canvas.Top="250" HorizontalAlignment="Center" VerticalAlignment="Top"  />
-            <Label Name="YeuCauUngVien"
-                d:Content="1234123123"
+            <TextBlock Name="YeuCauUngVien"
+                d:Text="123123123 ehqwe heqkwjhe kjqhw kjehqwj ehqwkjeh ekqjwhekjqwhekj qhwe"
                 FontWeight="SemiBold"
                 FontSize="18"
-                Canvas.Left="427" Canvas.Top="250" HorizontalAlignment="Left" VerticalAlignment="Center" Width="280" Height="68" />
+                Canvas.Left="434" Canvas.Top="255" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="68" IsEnabled="False" TextWrapping="Wrap"></TextBlock>
             <Label Content="Hình thức đăng tuyển"
                 FontWeight="SemiBold"
                 FontSize="18"
@@ -117,13 +117,12 @@
             <Label Name="NgayTao"
                 d:Content="1234123123"
                 FontWeight="SemiBold"
-                FontSize="18"
+                FontSize="14"
                 Canvas.Left="402" Canvas.Top="406" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276"  />
 
 
             <StackPanel x:Name="Pagination" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Canvas.Top="450" Width="178" Canvas.Left="529">
             </StackPanel>
         </Canvas>
-
     </Grid>
 </Page>

@@ -18,7 +18,7 @@ namespace ApplicationManagementSystem.BusinessLogic
 
         public static List<ChiTietGiaHan_BUS> LayDanhSach(int Thang, int Nam)
         {
-            return ChiTietGiaHan_DAO.LayDanhSach(Thang, Nam);
+            return ChiTietGiaHan_DAO.DocDanhSach(Thang, Nam);
         }
 
         public static int ThemCTGiaHan(ChiTietGiaHan_BUS ctgh)

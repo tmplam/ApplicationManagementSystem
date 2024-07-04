@@ -61,7 +61,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 DoanhNghiepTiemNangListView.View = null;
                 var textBlock = new TextBlock
                 {
-                    Text = "Danh sách tiềm năng tháng này chưa được tạo",
+                    Text = "Danh sách doanh nghiệp tiềm năng tháng này chưa được tạo",
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     FontSize = 20,
@@ -196,7 +196,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             }
             else
             {
-                MessageBox.Show("Danh sách tiềm năng tháng này đã được tạo", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Danh sách doanh nghiệp tiềm năng tháng này đã được tạo", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

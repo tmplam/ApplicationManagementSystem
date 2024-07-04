@@ -12,7 +12,7 @@ namespace ApplicationManagementSystem.DataAccess
 {
     class ChiTietGiaHan_DAO
     {
-        public static List<ChiTietGiaHan_BUS> LayDanhSach(int Thang, int Nam)
+        public static List<ChiTietGiaHan_BUS> DocDanhSach(int Thang, int Nam)
         {
             List<ChiTietGiaHan_BUS> list = new List<ChiTietGiaHan_BUS>();
             string sql = $"SELECT * FROM ChiTietGiaHan WHERE Thang = {Thang} AND Nam = {Nam}";

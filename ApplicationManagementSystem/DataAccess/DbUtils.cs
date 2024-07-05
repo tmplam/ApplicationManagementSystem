@@ -24,6 +24,7 @@ namespace ApplicationManagementSystem.DataAccess
 
         private DbUtils()
         {
+
             _server = "HOANGKHON\\SQLEXPRESS";
             _databaseName = "QLTuyenDung";
             _user = "sa";

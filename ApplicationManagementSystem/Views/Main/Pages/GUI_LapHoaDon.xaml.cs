@@ -110,7 +110,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 SoTienThanhToan = soTienDangTT,
                 HinhThucThanhToan = hinhThucTT,
                 MaPhieuTTDT = phieuTT.MaPhieu,
-                MaNhanVien = "4561023897412"
+                MaNhanVien = DbUtils._user
             };
             var numOfRow = HoaDon_BUS.themHoaDon(hoaDon);
             MessageBox.Show("Thêm hoá đơn thành công");

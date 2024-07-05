@@ -52,7 +52,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void TroVeButton_Click(object sender, RoutedEventArgs e)
         {
-            _pageNavigation.GoBack();
+            _pageNavigation.Navigate(new AdmissionForm(_pageNavigation));
         }
 
         private void HoSoUngTuyen_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -114,11 +114,11 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                 int thongbao = HoSoUngTuyen_BUS.CapNhatTrangThai(currentMa, selectedText);
                 if(thongbao > 0)
                 {
-                    MessageBox.Show("Cập nhật thành công");
+                    MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật thất bại");
+                    MessageBox.Show("Cập nhật thất bại", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }    
             }
         }

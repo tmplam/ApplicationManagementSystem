@@ -33,6 +33,8 @@ namespace ApplicationManagementSystem.DataAccess
             _instance = null;
         }
 
+        private DbUtils(string username, string password)
+        {
             _server = "NONAME";
             _databaseName = "QLTuyenDung";
             _user = "sa";
@@ -68,7 +70,7 @@ namespace ApplicationManagementSystem.DataAccess
             else
             {
                 closeConnection();
-            }          
+            }
         }
         public SqlConnection? Connection
         {

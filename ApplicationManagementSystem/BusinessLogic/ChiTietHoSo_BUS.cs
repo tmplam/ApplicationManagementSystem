@@ -11,9 +11,9 @@ namespace ApplicationManagementSystem.BusinessLogic
     {
         public Guid MaHoSo { get; set; }
         public int STT { get; set; }
-        public string TenHoSo { get; set; }
+        public string TenChiTiet { get; set; }
         public string MoTa { get; set; }
-        public static List<ChiTietHoSo_BUS> LayChiTietHoSo(string ma)
+        public static List<ChiTietHoSo_BUS> LayChiTietHoSo(Guid ma)
         {
             return ChiTietHoSo_DAO.XemCTHoSo(ma);
         }

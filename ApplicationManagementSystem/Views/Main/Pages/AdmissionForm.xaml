@@ -51,6 +51,7 @@
                     <GridViewColumn Header="Tên vị trí" DisplayMemberBinding="{Binding TenViTri}"/>
                     <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"/>
                     <GridViewColumn Header="Yêu cầu" DisplayMemberBinding="{Binding YeuCau}"/>
+                    <GridViewColumn Header="Ngày BĐ" DisplayMemberBinding="{Binding NgayBatDau}" Width="60"/>
                     <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding KhoangThoiGian}"/>
                     <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding TinhTrang}"/>
                     <GridViewColumn Header="Tình trạng thanh toán" DisplayMemberBinding="{Binding TinhTrangTT}"/>
@@ -69,7 +70,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" >
                     <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
-                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="PhieuDangTuyen_MouseDoubleClick"/>
                 </Style>
             </ListView.ItemContainerStyle>
 

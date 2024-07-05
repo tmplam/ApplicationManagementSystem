@@ -35,10 +35,10 @@ namespace ApplicationManagementSystem.DataAccess
 
         private DbUtils(string username, string password)
         {
-            _server = "MSI";
+            _server = "HOANGKHON\\SQLEXPRESS";
             _databaseName = "QLTuyenDung";
-            _user = username;
-            _password = password;
+            _user = "sa";
+            _password = "123";
 
             string connectionString = $"""
             Server = {_server}; 

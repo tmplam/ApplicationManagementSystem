@@ -25,7 +25,7 @@ namespace ApplicationManagementSystem.BusinessLogic
 
         public static bool KiemTraTonTai(string maSothue)
         {
-            return true;
+            return PhieuDangKyThanhVien_DAO.KiemTraTonTai(maSothue);
         }
 
         public static string? KiemTraDauVao(PhieuDangKyThanhVien_BUS pdk)
@@ -67,9 +67,20 @@ namespace ApplicationManagementSystem.BusinessLogic
             return PhieuDangKyThanhVien_DAO.LayDanhSach();
         }
 
+
         public static PhieuDangKyThanhVien_BUS docThongTin(Guid MaPhieuDKTV)
         {
             return PhieuDangKyThanhVien_DAO.docThongTin(MaPhieuDKTV);
+        }
+      
+        public static PhieuDangKyThanhVien_BUS LayThongTinPhieuDangKy(Guid MaPhieu)
+        {
+            return PhieuDangKyThanhVien_DAO.DocPhieuDangKyThanhVien(MaPhieu);
+        }
+
+        public static List<PhieuDangKyThanhVien_BUS> LayDanhSachHetHan()
+        {
+            return PhieuDangKyThanhVien_DAO.DocDanhSachHetHan();
         }
     }
 }

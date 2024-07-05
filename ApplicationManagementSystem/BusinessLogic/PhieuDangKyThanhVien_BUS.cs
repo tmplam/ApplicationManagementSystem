@@ -67,6 +67,12 @@ namespace ApplicationManagementSystem.BusinessLogic
             return PhieuDangKyThanhVien_DAO.LayDanhSach();
         }
 
+
+        public static PhieuDangKyThanhVien_BUS docThongTin(Guid MaPhieuDKTV)
+        {
+            return PhieuDangKyThanhVien_DAO.docThongTin(MaPhieuDKTV);
+        }
+      
         public static PhieuDangKyThanhVien_BUS LayThongTinPhieuDangKy(Guid MaPhieu)
         {
             return PhieuDangKyThanhVien_DAO.DocPhieuDangKyThanhVien(MaPhieu);

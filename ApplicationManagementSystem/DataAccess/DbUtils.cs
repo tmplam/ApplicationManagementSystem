@@ -7,53 +7,71 @@ namespace ApplicationManagementSystem.DataAccess
     {
         private string _server;
         private string _databaseName;
-        private string _user;
-        private string _password;
+        public static string _user;
+        public static string _password;
+        public static bool _isConnected = false;
 
         private static DbUtils? _instance = null;
         SqlConnection? _connection;
 
+
         public static DbUtils getInstance()
         {
-            if (_instance == null)
+            if (_instance == null || !_isConnected)
             {
-                _instance = new DbUtils();
+                _instance = new DbUtils(_user, _password);
             }
             return _instance;
         }
 
-        private DbUtils()
+        public static void closeConnection()
         {
+            if (_instance != null)
+            {
+                _instance.Connection.Close();
+            }
+            _instance = null;
+        }
 
+        private DbUtils(string username, string password)
+        {
             _server = "HOANGKHON\\SQLEXPRESS";
             _databaseName = "QLTuyenDung";
             _user = "sa";
             _password = "123";
 
             string connectionString = $"""
-				Server = {_server}; 
-				User ID = {_user}; 
-				Password={_password}; 
-				Database = {_databaseName}; 
-				TrustServerCertificate=True;
-				Connect Timeout=5
-				""";
+            Server = {_server}; 
+            User ID = {_user}; 
+            Password={_password}; 
+            Database = {_databaseName}; 
+            TrustServerCertificate=True;
+            Connect Timeout=5
+            """;
 
             _connection = new SqlConnection(connectionString);
 
             try
             {
                 _connection.Open();
+                _isConnected = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to connect to database! Reason: {ex.Message}",
+                _isConnected = false;
+                MessageBox.Show("Failed to connect to database!",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            _instance = this;
+            if (_isConnected)
+            {
+                _instance = this;
+            }
+            else
+            {
+                closeConnection();
+            }          
         }
-
         public SqlConnection? Connection
         {
             get

@@ -1,4 +1,5 @@
-﻿using ApplicationManagementSystem.Views.Login;
+﻿using ApplicationManagementSystem.DataAccess;
+using ApplicationManagementSystem.Views.Login;
 using ApplicationManagementSystem.Views.Main.Pages;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -39,13 +40,13 @@ namespace ApplicationManagementSystem.Views.Main
 
             NavItemsListView.ItemsSource = NavItems;
 
-            NavItemsListView.SelectedIndex = (int) _currentPage;
+            NavItemsListView.SelectedIndex = (int)_currentPage;
         }
 
         private void NavItemsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedIndex = NavItemsListView.SelectedIndex;
-            changePage((Page) selectedIndex, e);
+            changePage((Page)selectedIndex, e);
         }
 
         private void changePage(Page selectedIndex, SelectionChangedEventArgs e)
@@ -70,9 +71,14 @@ namespace ApplicationManagementSystem.Views.Main
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Xử lí đăng xuất chắc là navigate ra trang đăng nhập thui
-            new LoginWindow().Show();
-            Close();
+            MessageBoxResult result = MessageBox.Show("Bạn chắc chắn muốn đăng xuất?", "Cảnh báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                DbUtils.closeConnection();
+                new LoginWindow().Show();
+                Close();
+            }
+
         }
     }
 }

@@ -1,0 +1,155 @@
+﻿<Page x:Class="ApplicationManagementSystem.Views.Main.Pages.HoSoUngTuyen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ApplicationManagementSystem.Views.Main.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="750"
+      Title="HoSoUngTuyen">
+    <Canvas Background="LightGray">
+        <Button x:Name="TroVeButton" 
+            Content="&lt;&lt; Trở về" 
+            FontSize="16"
+            Cursor="Hand"
+            Background="RoyalBlue"
+            Foreground="White"
+            Canvas.Left="32" Canvas.Top="10"
+            Width="94" Height="32"
+            Click="TroVeButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBlock x:Name="textBlock" 
+               FontWeight="Black"
+               Foreground="RoyalBlue"
+               FontSize="30"
+               Canvas.Left="28" TextWrapping="Wrap" 
+               Text="PHIẾU TT ĐĂNG TUYỂN &gt; HỒ SƠ ỨNG TUYỂN" Canvas.Top="53" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Grid Canvas.Left="42" Canvas.Top="103" HorizontalAlignment="Center" Height="29" VerticalAlignment="Top">
+            <TextBox x:Name="TimKiemTextBox" 
+                 Width="151" Height="30" 
+                 FontSize="16"
+                 Padding="6,4,0,0"
+                 VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="Tìm kiếm ..."
+                   IsHitTestVisible="False"
+                   Foreground="Gray"
+                   FontSize="16"
+                   VerticalAlignment="Center"
+                   Padding="6,0,0,0"
+                   HorizontalAlignment="Left" Margin="8,0,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TimKiemTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <ListView ItemsSource="{Binding}"
+              Name="HoSoListView"
+              Height="331" Width="390" 
+              Canvas.Left="42" Canvas.Top="148" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mã hồ sơ" DisplayMemberBinding="{Binding MaPhieu}" Width="60"/>
+                    <GridViewColumn Header="Mã ứng viên" DisplayMemberBinding="{Binding MaUV}"/>
+                    <GridViewColumn Header="Mã phiếu TTDT" DisplayMemberBinding="{Binding MaPhieuTTDT}" Width="60"/>
+                    <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding NgayLap}" Width="60"/>
+                    <GridViewColumn Header="Tình trạng hồ sơ" DisplayMemberBinding="{Binding TinhTrangHS}"/>
+                    <GridViewColumn Header="Độ ưu tiên" DisplayMemberBinding="{Binding DoUuTien}"/>
+                    <GridViewColumn Header="Mã nhân viên" DisplayMemberBinding="{Binding MaNhanVien}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <ContextMenu x:Key="ContextMenu">
+                    <MenuItem Header="Chỉnh sửa">
+                    </MenuItem>
+                    <MenuItem Header="Xác thực">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="HoSoUngTuyen_MouseDoubleClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <ComboBox x:Name="cbbTrangThaiHS" Height="30" Canvas.Left="250" Canvas.Top="103" Width="182" FontSize="16" SelectionChanged="TrangThaiHS_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="Tất cả"  IsSelected="True" />
+            <ComboBoxItem Content="Đủ điều kiện" />
+            <ComboBoxItem Content="Không đủ điều kiện" />
+            <ComboBoxItem Content="Đạt" />
+        </ComboBox>
+        <ListView ItemsSource="{Binding}"
+            Name="ChiTietHoSoListView"
+            Height="172" Width="227" 
+            Canvas.Left="463" Canvas.Top="193" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"/>
+                    <GridViewColumn Header="Tên chi tiết" DisplayMemberBinding="{Binding TenChiTiet}" Width="120"/>
+                    <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding MoTa}" Width="80"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <ContextMenu x:Key="ContextMenu">
+                    <MenuItem Header="Chỉnh sửa">
+                    </MenuItem>
+                    <MenuItem Header="Xác thực">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <TextBlock x:Name="ChiTietHoSo" 
+            FontWeight="Black"
+            Foreground="RoyalBlue"
+            FontSize="20" 
+            Canvas.Left="499" TextWrapping="Wrap" 
+            Text="CHI TIẾT HỒ SƠ" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.532,1.775"/>
+        <Label Name="DoUuTien" Content="Tình trạng"
+            FontWeight="SemiBold"
+            FontSize="14"
+            Target="{Binding ElementName=TinhTrang}" Canvas.Left="461" Canvas.Top="374" RenderTransformOrigin="0.616,0.597"  HorizontalAlignment="Left" VerticalAlignment="Center"  />
+        <Label x:Name="TinhTrang" Content="Độ ưu tiên"
+            FontWeight="SemiBold"
+            FontSize="14" 
+            Target="{Binding ElementName=DoUuTien}" Canvas.Left="618" Canvas.Top="374" RenderTransformOrigin="0.616,0.597"  HorizontalAlignment="Center" VerticalAlignment="Top"  />
+        <ComboBox x:Name="cbbTrangThai"  Height="30" Canvas.Left="463" Canvas.Top="399" Width="128" FontSize="16" SelectionChanged="TrangThai_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="Đủ điều kiện" />
+            <ComboBoxItem Content="Không đủ điều kiện" />
+            <ComboBoxItem Content="Đạt" />
+        </ComboBox>
+        <ComboBox x:Name="cbbDoUuTien" IsEnabled="False" Height="30" Canvas.Left="623" Canvas.Top="399" Width="69" FontSize="16" SelectionChanged="DoUuTien_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="0" IsSelected="True" />
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="5" />
+        </ComboBox>
+        <Button x:Name="btnCapNhat" 
+            Content="Cập nhật" 
+            FontSize="16"
+            Cursor="Hand"
+            Background="RoyalBlue"
+            Foreground="White"
+            Canvas.Left="530" Canvas.Top="447"
+            Width="94" Height="32"
+            IsEnabled="False"
+            Click="CapNhatButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Canvas>
+</Page>

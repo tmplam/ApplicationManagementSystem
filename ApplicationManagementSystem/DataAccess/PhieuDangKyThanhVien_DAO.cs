@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Windows;
 
 namespace ApplicationManagementSystem.DataAccess
 {
@@ -50,6 +51,40 @@ namespace ApplicationManagementSystem.DataAccess
             command.Parameters.Add("@TrangThai", SqlDbType.NVarChar).Value = pdk.TrangThai;
 
             return command.ExecuteNonQuery();
+        }
+
+        public static PhieuDangKyThanhVien_BUS docThongTin(Guid MaPhieuDKTV)
+        {
+            PhieuDangKyThanhVien_BUS phieuDangKy = null;
+            try
+            {
+                string sql = "SELECT * FROM PhieuDangKyThanhVien WHERE MaPhieu = @MaPhieuDKTV";
+                var command = new SqlCommand(sql, DbUtils.getInstance().Connection);
+                command.Parameters.AddWithValue("@MaPhieuDKTV", MaPhieuDKTV);
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    phieuDangKy = new PhieuDangKyThanhVien_BUS
+                    {
+                        MaPhieu = (Guid)reader["MaPhieu"],
+                        TenCongTy = (string)reader["TenCongTy"],
+                        MaSoThue = (string)reader["MaSoThue"],
+                        NguoiDaiDien = (string)reader["NguoiDaiDien"],
+                        DiaChi = (string)reader["DiaChi"],
+                        Email = (string)reader["Email"],
+                        NgayTao = (DateTime)reader["NgayTao"],
+                        TrangThai = (string)reader["TrangThai"]
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                // Xử lý lỗi nếu cần thiết
+            }
+            return phieuDangKy;
         }
 
         public static List<PhieuDangKyThanhVien_BUS> DocDanhSachHetHan()

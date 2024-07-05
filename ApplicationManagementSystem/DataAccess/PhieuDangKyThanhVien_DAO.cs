@@ -51,5 +51,19 @@ namespace ApplicationManagementSystem.DataAccess
 
             return command.ExecuteNonQuery();
         }
+    
+        public static bool KiemTraTonTai(string maSoThue)
+        {
+            string query = """
+				SELECT COUNT(*) FROM PhieuDangKyThanhVien WHERE MaSoThue = @MaSoThue
+				""";
+
+            var command = new SqlCommand(query, DbUtils.getInstance().Connection);
+            command.Parameters.Add("@MaSoThue", SqlDbType.NVarChar).Value = maSoThue;
+            
+            int num = (int) command.ExecuteScalar();
+
+            return num > 0;
+        }
     }
 }

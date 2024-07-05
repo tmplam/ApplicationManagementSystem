@@ -25,7 +25,7 @@ namespace ApplicationManagementSystem.BusinessLogic
 
         public static bool KiemTraTonTai(string maSothue)
         {
-            return true;
+            return PhieuDangKyThanhVien_DAO.KiemTraTonTai(maSothue);
         }
 
         public static string? KiemTraDauVao(PhieuDangKyThanhVien_BUS pdk)

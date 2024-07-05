@@ -52,17 +52,18 @@
         </Grid>
 
         <ListView ItemsSource="{Binding}"
-              Name="HoSoListView" 
-              Height="310" Width="390" 
-              Canvas.Left="42" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center">
+              Name="HoSoListView"
+              Height="331" Width="390" 
+              Canvas.Left="42" Canvas.Top="148" HorizontalAlignment="Center" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Mã hồ sơ" DisplayMemberBinding="{Binding MaHoSo}" Width="80"/>
+                    <GridViewColumn Header="Mã hồ sơ" DisplayMemberBinding="{Binding MaPhieu}" Width="60"/>
                     <GridViewColumn Header="Mã ứng viên" DisplayMemberBinding="{Binding MaUV}"/>
-                    <GridViewColumn Header="Họ tên" DisplayMemberBinding="{Binding HoTen}"/>
-                    <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding NgayLap}"/>
-                    <GridViewColumn Header="Tình trạng hồ sơ" DisplayMemberBinding="{Binding TinhTrang}"/>
+                    <GridViewColumn Header="Mã phiếu TTDT" DisplayMemberBinding="{Binding MaPhieuTTDT}" Width="60"/>
+                    <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding NgayLap}" Width="60"/>
+                    <GridViewColumn Header="Tình trạng hồ sơ" DisplayMemberBinding="{Binding TinhTrangHS}"/>
                     <GridViewColumn Header="Độ ưu tiên" DisplayMemberBinding="{Binding DoUuTien}"/>
+                    <GridViewColumn Header="Mã nhân viên" DisplayMemberBinding="{Binding MaNhanVien}"/>
                 </GridView>
             </ListView.View>
             <ListView.Resources>
@@ -76,6 +77,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" >
                     <Setter Property="ContextMenu" Value="{StaticResource ContextMenu}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="HoSoUngTuyen_MouseDoubleClick"/>
                 </Style>
             </ListView.ItemContainerStyle>
 
@@ -87,14 +89,14 @@
             <ComboBoxItem Content="Đạt" />
         </ComboBox>
         <ListView ItemsSource="{Binding}"
-            Name="ChiTietHoSoListView" 
-            Height="265" Width="227" 
+            Name="ChiTietHoSoListView"
+            Height="172" Width="227" 
             Canvas.Left="463" Canvas.Top="193" HorizontalAlignment="Center" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"/>
-                    <GridViewColumn Header="Tên chi tiết" DisplayMemberBinding="{Binding TenChiTiet}"/>
-                    <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding MoTa}"/>
+                    <GridViewColumn Header="Tên chi tiết" DisplayMemberBinding="{Binding TenChiTiet}" Width="120"/>
+                    <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding MoTa}" Width="80"/>
                 </GridView>
             </ListView.View>
             <ListView.Resources>
@@ -112,11 +114,42 @@
             </ListView.ItemContainerStyle>
 
         </ListView>
-        <TextBlock x:Name="textBlock_Copy" 
+        <TextBlock x:Name="ChiTietHoSo" 
             FontWeight="Black"
             Foreground="RoyalBlue"
-            FontSize="26"
-            Canvas.Left="477" TextWrapping="Wrap" 
+            FontSize="20" 
+            Canvas.Left="499" TextWrapping="Wrap" 
             Text="CHI TIẾT HỒ SƠ" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.532,1.775"/>
+        <Label Name="DoUuTien" Content="Tình trạng"
+            FontWeight="SemiBold"
+            FontSize="14"
+            Target="{Binding ElementName=TinhTrang}" Canvas.Left="461" Canvas.Top="374" RenderTransformOrigin="0.616,0.597"  HorizontalAlignment="Left" VerticalAlignment="Center"  />
+        <Label x:Name="TinhTrang" Content="Độ ưu tiên"
+            FontWeight="SemiBold"
+            FontSize="14" 
+            Target="{Binding ElementName=DoUuTien}" Canvas.Left="618" Canvas.Top="374" RenderTransformOrigin="0.616,0.597"  HorizontalAlignment="Center" VerticalAlignment="Top"  />
+        <ComboBox x:Name="cbbTrangThai"  Height="30" Canvas.Left="463" Canvas.Top="399" Width="128" FontSize="16" SelectionChanged="TrangThai_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="Đủ điều kiện" />
+            <ComboBoxItem Content="Không đủ điều kiện" />
+            <ComboBoxItem Content="Đạt" />
+        </ComboBox>
+        <ComboBox x:Name="cbbDoUuTien" IsEnabled="False" Height="30" Canvas.Left="623" Canvas.Top="399" Width="69" FontSize="16" SelectionChanged="DoUuTien_Selected" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBoxItem Content="0" IsSelected="True" />
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="5" />
+        </ComboBox>
+        <Button x:Name="btnCapNhat" 
+            Content="Cập nhật" 
+            FontSize="16"
+            Cursor="Hand"
+            Background="RoyalBlue"
+            Foreground="White"
+            Canvas.Left="530" Canvas.Top="447"
+            Width="94" Height="32"
+            IsEnabled="False"
+            Click="CapNhatButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Canvas>
 </Page>

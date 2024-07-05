@@ -60,7 +60,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             DataContext = PhieuThongTinDangTuyen_BUS.TimPhieu(inputText);
         }
 
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void PhieuDangTuyen_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var listViewItem = sender as ListViewItem;
             if (listViewItem != null && listViewItem.IsSelected)

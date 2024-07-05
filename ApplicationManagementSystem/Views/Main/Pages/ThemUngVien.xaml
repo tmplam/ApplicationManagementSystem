@@ -1,0 +1,106 @@
+﻿<Page x:Class="ApplicationManagementSystem.Views.Main.Pages.ThemUngVien"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ApplicationManagementSystem.Views.Main.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="510" d:DesignWidth="750"
+      Title="Thêm ứng viên">
+
+    <Canvas Background="LightGray">
+        <Button x:Name="TroVeButton" 
+            Content="&lt;&lt; Trở về" 
+            FontSize="16"
+            Cursor="Hand"
+            Background="RoyalBlue"
+            Foreground="White"
+            Canvas.Left="10" Canvas.Top="10"
+            Width="94" Height="32"
+            Click="TroVeButton_Click"/>
+
+        <Rectangle Height="391" Canvas.Left="126" 
+                   Stroke="Blue" 
+                   StrokeThickness="2"
+                   Canvas.Top="49" Width="516" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <TextBlock Canvas.Left="259" 
+                   TextWrapping="Wrap" 
+                   Text="THÊM ỨNG VIÊN" 
+                   Foreground="Blue"
+                   FontSize="30"
+                   FontWeight="Black"
+                   Canvas.Top="75" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <StackPanel Canvas.Left="144" Canvas.Top="134" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Label Content="Họ tên ứng viên"
+                   FontWeight="SemiBold"
+                   FontSize="18"
+                   Target="{Binding ElementName=TenCongTyTextBox}"  />
+            <TextBox x:Name="HoTenUngVienTextBox"
+                     TextWrapping="Wrap"  
+                     FontSize="18"
+                     Width="200"/>
+        </StackPanel>
+
+        <StackPanel Canvas.Left="420" Canvas.Top="134">
+            <Label Content="Ngày sinh"
+                   FontWeight="SemiBold"
+                   FontSize="18"
+                   Target="{Binding ElementName=MaSoThueTextBox}"  />
+            <TextBox x:Name="NgaySinhTextBox"
+                     TextWrapping="Wrap"  
+                     FontSize="18"
+                     Width="200"/>
+        </StackPanel>
+
+        <StackPanel Canvas.Left="144" Canvas.Top="214">
+            <Label Content="Số điện thoại"
+                   FontWeight="SemiBold"
+                   FontSize="18"
+                   Target="{Binding ElementName=NguoiDaiDienTextBox}"  />
+            <TextBox x:Name="SoDienThoaiTextBox" 
+                     TextWrapping="Wrap"  
+                     FontSize="18"
+                     Width="200"/>
+        </StackPanel>
+
+        <StackPanel Canvas.Left="420" Canvas.Top="214">
+            <Label Content="Email"
+                   FontWeight="SemiBold"
+                   FontSize="18"
+                   Target="{Binding ElementName=EmailTextBox}"  />
+            <TextBox x:Name="EmailTextBox"
+                     TextWrapping="Wrap"  
+                     FontSize="18"
+                     Width="200"/>
+        </StackPanel>
+        <Button x:Name="ThemUngVienButton" 
+        Content="THÊM" 
+        FontSize="18"
+        Cursor="Hand"
+        Background="RoyalBlue"
+        Foreground="White"
+        Canvas.Left="291" Canvas.Top="329"
+        Width="186" Height="40"
+        Click="ThemUngVienButton_Click"
+        HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                    <!-- Điều chỉnh giá trị CornerRadius ở đây -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+    </Canvas>
+</Page>

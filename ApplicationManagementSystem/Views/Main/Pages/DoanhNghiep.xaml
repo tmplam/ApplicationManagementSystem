@@ -18,7 +18,7 @@
 
         <Grid Canvas.Left="42" Canvas.Top="85">
             <TextBox x:Name="TimKiemTextBox" 
-                     Width="292" Height="37" 
+                     Width="425" Height="37" 
                      FontSize="18"
                      Padding="6,4,0,0"
                      VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -48,10 +48,10 @@
                 FontSize="16"
                 Cursor="Hand"
                 Content="Thêm Doanh Nghiệp" 
-                Canvas.Left="539" Canvas.Top="85" 
-                Height="37" Width="154"
-                Click="themDoanhNghiepButton_Click" RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Center" VerticalAlignment="Top" />
-        
+                Canvas.Left="510" Canvas.Top="85" 
+                Height="37" Width="183"
+                Click="themDoanhNghiepButton_Click" RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
         <ListView ItemsSource="{Binding}"
                   Name="DoanhNghiepListView" 
                   Height="310" Width="651" 

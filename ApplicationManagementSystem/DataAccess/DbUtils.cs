@@ -33,12 +33,10 @@ namespace ApplicationManagementSystem.DataAccess
             _instance = null;
         }
 
-        private DbUtils(string username, string password)
-        {
-            _server = "HOANGKHON\\SQLEXPRESS";
+            _server = "NONAME";
             _databaseName = "QLTuyenDung";
             _user = "sa";
-            _password = "123";
+            _password = "200303";
 
             string connectionString = $"""
             Server = {_server}; 

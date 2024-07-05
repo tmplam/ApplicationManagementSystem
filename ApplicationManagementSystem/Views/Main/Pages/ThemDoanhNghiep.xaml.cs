@@ -40,11 +40,19 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             var messageError = PhieuDangKyThanhVien_BUS.KiemTraDauVao(phieuDangKy);
             if (string.IsNullOrEmpty(messageError))
             {
-                // Không có lỗi, xử lí thêm
-                var numOfRow = PhieuDangKyThanhVien_BUS.ThemPhieuDangKy(phieuDangKy);
-                // Thêm thành công
-                MessageBox.Show($"Thêm phiếu đăng ký thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                _pageNavigation.Navigate(new DoanhNghiep(_pageNavigation));
+                var existing = PhieuDangKyThanhVien_BUS.KiemTraTonTai(phieuDangKy.MaSoThue);
+                if (existing)
+                {
+                    MessageBox.Show("Mã số thuế doanh nghiệp đã tồn tại.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    // Không có lỗi, xử lí thêm
+                    var numOfRow = PhieuDangKyThanhVien_BUS.ThemPhieuDangKy(phieuDangKy);
+                    // Thêm thành công
+                    MessageBox.Show($"Thêm phiếu đăng ký thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _pageNavigation.Navigate(new DoanhNghiep(_pageNavigation));
+                }
             }
             else
             {

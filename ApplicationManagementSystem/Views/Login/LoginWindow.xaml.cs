@@ -1,4 +1,5 @@
-﻿using ApplicationManagementSystem.DataAccess;
+﻿using ApplicationManagementSystem.BusinessLogic;
+using ApplicationManagementSystem.DataAccess;
 using ApplicationManagementSystem.Views.Main;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,16 @@ namespace ApplicationManagementSystem.Views.Login
             var db = DbUtils.getInstance();
             if (db != null && DbUtils._isConnected)
             {
-                var window = new MainWindow();
-                window.Show();
-                Close();
+                if(NhanVien_BUS.KiemTraTonTai(username) == null)
+                {
+                    MessageBox.Show("Failed to connect to database!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    var window = new MainWindow();
+                    window.Show();
+                    Close();
+                }             
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿#nullable disable
-
-using ApplicationManagementSystem.DataAccess;
+﻿using ApplicationManagementSystem.DataAccess;
+using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace ApplicationManagementSystem.BusinessLogic
@@ -13,44 +13,71 @@ namespace ApplicationManagementSystem.BusinessLogic
         public string SoDienThoai { get; set; }
         public string Email { get; set; }
 
-        public static bool KiemTraEmail(string email)
+        public static bool KiemTraEmail(string Email)
         {
-            // Biểu thức chính quy để kiểm tra email hợp lệ
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            return Regex.IsMatch(email, pattern);
+            return Regex.IsMatch(Email, pattern);
         }
-        
-        #nullable enable
-        public static string? KiemTraDauVao(UngVien_BUS pdk)
+
+        public static bool KiemTraChiChuaChuSo(string soDienThoai)
         {
-            if (string.IsNullOrEmpty(pdk.HoTen))
+            string pattern = @"^\d+$";
+            return Regex.IsMatch(soDienThoai, pattern);
+        }
+
+        public static bool KiemTraDoDaiTu10Den12(string soDienThoai)
+        {
+            string pattern = @"^\d{10,12}$";
+            return Regex.IsMatch(soDienThoai, pattern);
+        }
+
+        public static bool KiemTraNgaySinhHopLe(DateTime ngaySinh)
+        {
+            return ngaySinh <= DateTime.Today;
+        }
+
+        public static string KiemTraDauVao(UngVien_BUS uv)
+        {
+            if (string.IsNullOrEmpty(uv.HoTen))
             {
                 return "Chưa nhập tên ứng viên.";
             }
-            else if (pdk.NgaySinh == DateTime.MinValue)
+            else if (uv.NgaySinh == DateTime.MinValue)
             {
                 return "Chưa nhập ngày sinh.";
             }
-            else if (string.IsNullOrEmpty(pdk.SoDienThoai))
+            else if (!KiemTraNgaySinhHopLe(uv.NgaySinh))
+            {
+                return "Ngày sinh không hợp lệ (phải nhỏ hơn hoặc bằng ngày hôm nay).";
+            }
+            else if (string.IsNullOrEmpty(uv.SoDienThoai))
             {
                 return "Chưa nhập số điện thoại.";
             }
-            else if (string.IsNullOrEmpty(pdk.Email))
+            else if (!KiemTraChiChuaChuSo(uv.SoDienThoai))
+            {
+                return "Số điện thoại không hợp lệ (phải là chữ số).";
+            }
+            else if (!KiemTraDoDaiTu10Den12(uv.SoDienThoai))
+            {
+                return "Số điện thoại không hợp lệ (phải có 10 - 12 chữ số).";
+            }
+            else if (string.IsNullOrEmpty(uv.Email))
             {
                 return "Chưa nhập email.";
             }
 
-            if (!KiemTraEmail(pdk.Email))
+            if (!KiemTraEmail(uv.Email))
             {
-                return "Email không hợp lệ";
+                return "Email không hợp lệ.";
             }
 
             return null;
         }
 
-        public static int ThemPhieuDangKy(UngVien_BUS pdk)
+        public static int ThemPhieuDangKy(UngVien_BUS uv)
         {
-            return UngVien_DAO.Them(pdk);
+            return UngVien_DAO.Them(uv);
         }
 
         public static List<UngVien_BUS> LayDanhSachUngVien(string name = null)

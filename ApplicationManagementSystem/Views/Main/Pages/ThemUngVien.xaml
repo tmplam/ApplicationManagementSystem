@@ -45,18 +45,17 @@
             <Label Content="Ngày sinh"
                    FontWeight="SemiBold"
                    FontSize="18"
-                   Target="{Binding ElementName=MaSoThueTextBox}"  />
-            <TextBox x:Name="NgaySinhTextBox"
-                     TextWrapping="Wrap"  
-                     FontSize="18"
-                     Width="200"/>
+                   Target="{Binding ElementName=NgaySinhDatePicker}"  />
+            <DatePicker x:Name="NgaySinhDatePicker"
+                        FontSize="18"
+                        Width="200"/>
         </StackPanel>
 
         <StackPanel Canvas.Left="144" Canvas.Top="214">
             <Label Content="Số điện thoại"
                    FontWeight="SemiBold"
                    FontSize="18"
-                   Target="{Binding ElementName=NguoiDaiDienTextBox}"  />
+                   Target="{Binding ElementName=SoDienThoaiTextBox}"  />
             <TextBox x:Name="SoDienThoaiTextBox" 
                      TextWrapping="Wrap"  
                      FontSize="18"
@@ -83,24 +82,21 @@
         Width="186" Height="40"
         Click="ThemUngVienButton_Click"
         HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5">
-                                    <!-- Điều chỉnh giá trị CornerRadius ở đây -->
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Resources>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+        Background="{TemplateBinding Background}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="LightSkyBlue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-
     </Canvas>
 </Page>

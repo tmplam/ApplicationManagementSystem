@@ -22,6 +22,12 @@ namespace ApplicationManagementSystem.BusinessLogic
         {
             return PhieuQuangCao_DAO.ThemPhieu(dsPhieu);
         }
+
+        public static void GuiPhieuQuangCao(List<PhieuQuangCao_BUS> dsPhieu, string email)
+        {
+            // Đã gửi email...
+            return;
+        }
     }
 
 }

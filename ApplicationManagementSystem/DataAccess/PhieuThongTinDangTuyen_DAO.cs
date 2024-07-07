@@ -24,7 +24,7 @@ namespace ApplicationManagementSystem.DataAccess
             command.Parameters.Add("@NgayBatDau", SqlDbType.Date).Value = pdk.NgayBatDau.Date;
             command.Parameters.Add("@TenViTri", SqlDbType.NVarChar).Value = pdk.TenViTri;
             command.Parameters.Add("@SoLuong", SqlDbType.Int).Value = pdk.SoLuong;
-            command.Parameters.Add("@YeuCau", SqlDbType.Text).Value = pdk.YeuCau;
+            command.Parameters.Add("@YeuCau", SqlDbType.NText).Value = pdk.YeuCau;
             command.Parameters.Add("@KhoangThoiGian", SqlDbType.Int).Value = pdk.KhoangThoiGian;
             command.Parameters.Add("@MaPhieuDKTV", SqlDbType.UniqueIdentifier).Value = pdk.MaPhieuDKTV;
             command.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar).Value = pdk.MaNhanVien;

@@ -73,6 +73,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void XacNhanButton_Click(object sender, RoutedEventArgs e)
         {
+            PhieuQuangCao_BUS.GuiPhieuQuangCao(dsPhieuQuangCao, doanhNghiep.Email);
             _pageNavigation.Navigate(new AdmissionForm(_pageNavigation));
         }
 

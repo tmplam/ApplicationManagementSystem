@@ -25,7 +25,7 @@
              Padding="6,4,0,0"
              VerticalAlignment="Center" HorizontalAlignment="Center"
              KeyUp="TimKiemUngVienTextBox_KeyUp"/>
-            <TextBlock Text="Tìm kiếm..."
+            <TextBlock Text="Tìm kiếm theo tên ứng viên..."
                IsHitTestVisible="False"
                Foreground="Gray"
                FontSize="18"
@@ -47,22 +47,27 @@
 
 
         <Button x:Name="themUngVienButton" 
-                Background="RoyalBlue"
-                Foreground="White"
-                FontSize="16"
-                Cursor="Hand"
-                Content="Thêm ứng viên" 
-                Canvas.Left="515" Canvas.Top="85" 
-                Height="37" Width="178"
-                Click="themUngVienButton_Click" RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Left" VerticalAlignment="Center">
+        Background="RoyalBlue"
+        Foreground="White"
+        FontSize="16"
+        Cursor="Hand"
+        Content="Thêm ứng viên" 
+        Canvas.Left="515" Canvas.Top="85" 
+        Height="37" Width="178"
+        Click="themUngVienButton_Click" RenderTransformOrigin="0.983,-0.948" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="10">
+                    <Border x:Name="border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="LightSkyBlue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
         </Button>

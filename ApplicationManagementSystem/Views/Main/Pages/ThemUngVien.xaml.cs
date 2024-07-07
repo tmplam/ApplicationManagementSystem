@@ -27,26 +27,39 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void ThemUngVienButton_Click(object sender, RoutedEventArgs e)
         {
-            UngVien_BUS ungVien = new ()
+            UngVien_BUS ungVien = new UngVien_BUS
             {
                 HoTen = HoTenUngVienTextBox.Text.Trim(),
-                NgaySinh = DateTime.ParseExact(NgaySinhTextBox.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                NgaySinh = NgaySinhDatePicker.SelectedDate.GetValueOrDefault(),
                 SoDienThoai = SoDienThoaiTextBox.Text.Trim(),
                 Email = EmailTextBox.Text.Trim(),
             };
 
             var messageError = UngVien_BUS.KiemTraDauVao(ungVien);
-            if (string.IsNullOrEmpty(messageError))
-            {
-                // Không có lỗi, xử lí thêm
-                var numOfRow = UngVien_BUS.ThemPhieuDangKy(ungVien);
-                // Thêm thành công
-                MessageBox.Show($"Thêm ứng viên thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                _pageNavigation.Navigate(new Applicant(_pageNavigation));
-            }
-            else
+
+            if (!string.IsNullOrEmpty(messageError))
             {
                 MessageBox.Show(messageError, "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                int numOfRow = UngVien_BUS.ThemPhieuDangKy(ungVien);
+
+                if (numOfRow > 0)
+                {
+                    MessageBox.Show("Thêm ứng viên thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _pageNavigation.Navigate(new Applicant(_pageNavigation)); // Navigate to a new page or refresh current view
+                }
+                else
+                {
+                    MessageBox.Show("Thêm ứng viên không thành công", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

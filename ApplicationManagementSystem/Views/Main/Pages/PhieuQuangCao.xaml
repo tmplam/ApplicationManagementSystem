@@ -91,11 +91,14 @@
                 FontWeight="SemiBold"
                 FontSize="18"
                 Canvas.Left="104" Canvas.Top="250" HorizontalAlignment="Center" VerticalAlignment="Top"  />
-            <TextBlock Name="YeuCauUngVien"
-                d:Text="123123123 ehqwe heqkwjhe kjqhw kjehqwj ehqwkjeh ekqjwhekjqwhekj qhwe"
-                FontWeight="SemiBold"
-                FontSize="18"
-                Canvas.Left="434" Canvas.Top="255" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="68" IsEnabled="False" TextWrapping="Wrap"></TextBlock>
+            <ScrollViewer Canvas.Left="434" Canvas.Top="255" Width="280" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock Name="YeuCauUngVien"
+                       d:Text="123123123 ehqeqwwe heqkwjhe kjqhw kjehqwj ehqwkjeh ekqjwhekjqwhekj qhwe eqwjhe kqjhwek jqhwek jhqwkje h ehqkwjhe k ehkqwh"
+                       FontWeight="SemiBold"
+                       FontSize="18"
+                       TextWrapping="Wrap"
+                       IsEnabled="False" Height="82" />
+            </ScrollViewer>
             <Label Content="Hình thức đăng tuyển"
                 FontWeight="SemiBold"
                 FontSize="18"

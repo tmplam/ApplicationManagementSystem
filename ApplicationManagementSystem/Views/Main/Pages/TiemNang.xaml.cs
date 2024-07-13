@@ -42,6 +42,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             if (GiaHan_BUS.KiemTra(Thang, Nam) == 0)
             {
                 cbNguoiDuyet.IsEnabled = false;
+                cbNguoiDuyet.SelectedItem = null;
                 if (DoanhNghiepTiemNangListView.View is GridView gridView)
                 {
                     originalGridView = gridView;
@@ -59,6 +60,8 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             }
             else
             {
+                ThangTextBox.Text = Thang.ToString();
+                NamTextBox.Text = Nam.ToString();
                 if (originalGridView != null)
                 {
                     DoanhNghiepTiemNangListView.View = originalGridView;
@@ -138,6 +141,12 @@ namespace ApplicationManagementSystem.Views.Main.Pages
 
         private void taoDanhSachButton_Click(object sender, RoutedEventArgs e)
         {
+            DateTime now = DateTime.Now;
+            ThangTextBox.Text = now.Month.ToString();
+            NamTextBox.Text = now.Year.ToString();
+            ThangTextBox.IsEnabled = false;
+            NamTextBox.IsEnabled = false;   
+            TimKiemButton.IsEnabled = false;    
             int Thang = 0;
             int Nam = 0;
             if (int.TryParse(ThangTextBox.Text, out int Month) && int.TryParse(NamTextBox.Text, out int Year))
@@ -184,6 +193,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             }
             else
             {
+                Load_GridView(Thang, Nam);
                 MessageBox.Show("Danh sách doanh nghiệp tiềm năng tháng này đã được tạo", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -191,7 +201,8 @@ namespace ApplicationManagementSystem.Views.Main.Pages
         private static List<int> GetComboBoxItems()
         {
             return new List<int>
-            {
+            { 
+                0,
                 5,
                 10, 
                 15, 
@@ -280,6 +291,9 @@ namespace ApplicationManagementSystem.Views.Main.Pages
             }
             else
             {
+                ThangTextBox.IsEnabled = true;
+                NamTextBox.IsEnabled = true;
+                TimKiemButton.IsEnabled = true;
                 DateTime now = DateTime.Now;
                 GiaHan_BUS gh = new()
                 {
@@ -321,6 +335,7 @@ namespace ApplicationManagementSystem.Views.Main.Pages
                     MessageBox.Show("Tạo danh sách thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     Load_GridView(now.Month, now.Year);
                     taoDanhSachButton.Visibility = Visibility.Visible;
+                    XacNhanButton.Visibility = Visibility.Hidden;
                 }
             }
         }
